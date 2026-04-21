@@ -212,35 +212,8 @@ index=main
 ### Sysmon Process Creation Events
  
 ```spl
-index=main source="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
-| table _time, host, User, Image, CommandLine, ParentImage
-| sort -_time
-```
- 
-### Windows Failed Login Attempts (Event ID 4625)
- 
-```spl
-index=main source="WinEventLog:Security" EventCode=4625
-| stats count by _time, host, Account_Name, Failure_Reason
-| sort -count
-```
- 
-### Detect Brute Force (5+ Failures in 60s)
- 
-```spl
-index=main source="WinEventLog:Security" EventCode=4625
-| bin _time span=60s
-| stats count by _time, host, Account_Name
-| where count >= 5
-```
- 
-### Top Processes Launched (Sysmon)
- 
-```spl
-index=main EventCode=1
-| top limit=20 Image
-```
- 
+index=main source="WinEventLog:Microsoft-Windows-Sysmon/Operational" 
+``` 
 ---
  
 ## 🔥 Troubleshooting & Key Learnings
