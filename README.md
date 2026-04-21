@@ -209,10 +209,10 @@ index=main
 | stats count by host, source, sourcetype
 ```
  
-### Sysmon Process Creation Events
+### Sysmon Process Launched
  
 ```spl
-index=main source="WinEventLog:Microsoft-Windows-Sysmon/Operational" 
+index=main source="WinEventLog:Microsoft-Windows-Sysmon/Operational" EventCode=1
 ``` 
 ---
  
